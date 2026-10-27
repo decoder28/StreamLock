@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>StreamLock</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main class="app">
+    <!-- HEADER -->
+    <header class="header">
+      <div class="header-info">
+        <h1 class="logo">Stream<span class="logo-accent">Lock</span></h1>
+        <p id="statusText" class="status-subtitle">Scanning for video player…</p>
+      </div>
+      <button id="enabled" class="switch on" title="Toggle Extension" aria-label="Toggle Extension"></button>
+    </header>
+
+    <!-- 1. VIDEO QUALITY CARD -->
+    <section class="card card-quality">
+      <div class="card-header">
+        <span class="card-title">VIDEO QUALITY</span>
+        <span id="qualityBadge" class="badge warning">LOCKED</span>
+      </div>
+      <div class="quality-dropdown" id="qualityDropdown">
+        <button
+          type="button"
+          id="qualityDropdownTrigger"
+          class="quality-dropdown-trigger"
+          aria-haspopup="listbox"
+          aria-expanded="false"
+        >
+          <span id="qualityDropdownValue">Max Available</span>
+          <span class="quality-chevron"></span>
+        </button>
+
+        <div
+          id="qualityDropdownMenu"
+          class="quality-dropdown-menu"
+          role="listbox"
+        ></div>
+
+        <select
+          id="quality"
+          class="quality-native-select"
+          aria-hidden="true"
+          tabindex="-1"
+        ></select>
+      </div>
+    </section>
+
+    <!-- 2. BUFFER CARD -->
+    <section class="card">
+      <div class="card-header">
+        <span class="card-title">BUFFER</span>
+        <span id="bufferBadge" class="badge success">SUPPORTED</span>
+      </div>
+      <div class="buffer-control-row">
+        <div class="buffer-input-wrapper">
+          <input type="number" id="buffer" min="1" step="1" placeholder="60" aria-label="Buffer Target in seconds">
+          <span class="buffer-unit">seconds</span>
+        </div>
+        <button id="bufferEntireVideo" class="switch" title="Buffer Entire Video" aria-label="Buffer Entire Video"></button>
+      </div>
+      <div class="stats-grid buffer-stats-grid">
+        <div class="stat-box stat-box-wide">
+          <span class="stat-label">Buffered</span>
+          <strong id="buffered" class="stat-value">—</strong>
+        </div>
+        <div class="stat-box stat-box-narrow">
+          <span class="stat-label">ABR</span>
+          <strong id="abr" class="stat-value">—</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. SPEED CARD -->
+    <section class="card">
+      <div class="card-header">
+        <span class="card-title">SPEED</span>
+      </div>
+      <div class="speed-presets">
+        <button class="speed-btn" data-speed="1">1.0x</button>
+        <button class="speed-btn" data-speed="1.5">1.5x</button>
+        <button class="speed-btn" data-speed="2">2.0x</button>
+        <button class="speed-btn" data-speed="3">3.0x</button>
+      </div>
+    </section>
+
+    <!-- 4. PLAYER OVERLAY CARD -->
+    <section class="card card-compact">
+      <div class="toggle-row">
+        <span class="card-title">Player Overlay</span>
+        <button id="showPlayerOverlay" class="switch on" title="Show player overlay" aria-label="Show player overlay"></button>
+      </div>
+    </section>
+
+    <!-- 5. DIAGNOSTICS & CAPABILITIES (COLLAPSIBLE) -->
+    <section class="diagnostics-wrapper">
+      <button id="diagToggle" class="diag-toggle-btn" aria-expanded="false">
+        <div class="diag-header-text">
+          <span class="diag-title">DIAGNOSTICS & CAPABILITIES</span>
+          <span class="diag-subtitle">Player, adapter, tracks and buffer info</span>
+        </div>
+        <span class="diag-arrow">▾</span>
+      </button>
+
+      <div id="diagSection" class="diag-section hidden">
+        <div class="diag-row"><span>Player Type:</span> <strong id="playerType">—</strong></div>
+        <div class="diag-row"><span>Stream Mode:</span> <strong id="streamMode">—</strong></div>
+        <div class="diag-row"><span>Adapter:</span> <strong id="diagAdapter">—</strong></div>
+        <div class="diag-row"><span>Quality Control:</span> <strong id="diagQC">—</strong></div>
+        <div class="diag-row"><span>Buffer Control:</span> <strong id="diagBC">—</strong></div>
+        <div class="diag-row"><span>Buffer Entire Video:</span> <strong id="diagBEV">—</strong></div>
+        <div class="diag-row"><span>VOD Timeline:</span> <strong id="diagTimeline">—</strong></div>
+        <div class="diag-row"><span>Buffer Ahead / End:</span> <strong id="diagBufferStats">—</strong></div>
+        <div class="diag-row"><span>Buffer Growth:</span> <strong id="diagGrowth">—</strong></div>
+        <div class="diag-row"><span>Goal (Target / Actual):</span> <strong id="diagGoal">—</strong></div>
+        <div class="diag-row"><span>Network Headroom:</span> <strong id="diagBandwidth">—</strong></div>
+        <div class="diag-row"><span>ABR Control:</span> <strong id="diagABR">—</strong></div>
+        <div class="diag-row"><span>Candidate Videos:</span> <strong id="diagCandidates">—</strong></div>
+        <button id="diagCopy" class="diag-copy-btn">Copy Diagnostics</button>
+      </div>
+    </section>
+
+    <!-- 6. BOTTOM ACTIONS -->
+    <div class="actions-row">
+      <button id="apply" class="btn-primary">Apply Settings</button>
+      <button id="refresh" class="btn-secondary">Refresh Player</button>
+    </div>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>
