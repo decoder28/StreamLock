@@ -1,4 +1,4 @@
-# Universal Video Quality & Buffer Controller — Chrome Extension (Manifest V3)
+# Universal Video Quality & Buffer Controller — Chrome Extension 
 
 A Chrome/Chromium Manifest V3 extension built with a universal core and a player-adapter architecture to detect video players across arbitrary websites and provide unified quality locking, buffer control, and player diagnostics.
 
