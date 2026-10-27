@@ -90,6 +90,6 @@ node test/test-runner.js
 2. Enable **Developer mode** toggle in the top-right corner.
 3. Click **Load unpacked**.
 4. Select the directory:
-   `c:\Users\DELL\Desktop\jio\universal`
+   `c:\Users\username\Downloads\StreamLock`
 5. The extension will appear as **Universal Video Quality & Buffer Control**.
 6. Open any video website (JioHotstar, HLS demo, Video.js demo, or standard HTML5 video) and click the extension icon to manage quality and buffer.
